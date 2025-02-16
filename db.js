@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 const Schema =mongoose.Schema
 const ObjectId=Schema.ObjectId
-mongoose.connect("mongodb+srv://Shreyash:27KRTolLORr1lWWC@cluster0.mxa9n.mongodb.net/Coursify")
+
 
 const userSchema= new Schema({
   email:{type:String,unique:true},
