@@ -1,12 +1,12 @@
-const express =require("express")
-const app =express();
+const express=require("express")
+const app=express();
 
 const{userRouter}=require("./Routes/user")
 const{courseRouter}=require("./Routes/course")
 
 
-app.use("/user",userRouter)
-app.use("/course",courseRouter)
+app.use("api/v1/user",userRouter)
+app.use("api/v1/course",courseRouter)
 
 
 

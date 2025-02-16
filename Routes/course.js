@@ -1,8 +1,5 @@
-
 const {Router}=require("express")
-const { courseRouter } = require("./user")
-
-const userRouter=Router()
+const courseRouter=Router()
 
 courseRouter.post("/purchase",(req,res)=>{
     res.json({
@@ -19,5 +16,5 @@ courseRouter.get("/preview",(req,res)=>{
 
 
 module.exports={
-  userRouter
+  courseRouter
 }

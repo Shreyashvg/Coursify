@@ -1,21 +1,21 @@
 const {Router}=require("express") 
-const courseRouter=Router()
+const userRouter=Router()
 
-courseRouter.post("user/signup",(req,res)=>{
+userRouter.post("/signup",(req,res)=>{
   res.json({
     message:"endpoint for signup"
   })
   
 })
   
-courseRouter.post("user/signin",(req,res)=>{
+userRouter.post("/signin",(req,res)=>{
   res.json({
     message:"endpoint for signup"
   })
   
 })
   
-courseRouter.get("user/purchases",(req,res)=>{
+userRouter.get("/purchases",(req,res)=>{
   res.json({
     message:"endpoint for signup"
   })
@@ -23,5 +23,5 @@ courseRouter.get("user/purchases",(req,res)=>{
 })
 
 module.exports={
-  courseRouter
+  userRouter
 }
