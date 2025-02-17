@@ -16,7 +16,7 @@ app.use("/api/v1/admin",adminRouter)
 
 
 async function main(){
-  await mongoose.connect("mongodb+srv://Shreyash:27KRTolLORr1lWWC@cluster0.mxa9n.mongodb.net/Coursify")
+  await mongoose.connect(MONGO_URL)
 app.listen(3000,()=>{
   console.log("server is running on port 3000")
 })
