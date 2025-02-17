@@ -1,11 +1,12 @@
 const {Router}=require("express") 
 const userRouter=Router()
-const{userModel}=require("../db")
+const{userModel, purchaseModel,courseModel}=require("../db")
 const{z}=require("zod")
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt =require("jsonwebtoken")
-const{JWT_USER_SECRECT}=require("../config")
+const{JWT_USER_SECRECT}=require("../config");
+const { userMiddleware } = require("../middleware/user");
 
 
 userRouter.post("/signup",async (req,res)=>{
@@ -114,11 +115,21 @@ userRouter.post("/signin",async (req,res)=>{
  
 })
   
-userRouter.get("/purchases",(req,res)=>{
-  res.json({
-    message:"endpoint for signup"
+userRouter.get("/purchases",userMiddleware,async (req,res)=>{
+  const userId=req.userId
+  const purchases=await purchaseModel.find({
+    userId
   })
-  
+
+  const courseData=await courseModel.find({
+    _id:{$in:purchases.map(x=>x.courseId)}
+  })
+
+
+  res.json({
+    purchases,
+    courseData
+  })
 })
 
 module.exports={
