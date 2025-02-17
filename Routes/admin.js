@@ -5,7 +5,8 @@ const{z}=require("zod")
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt =require("jsonwebtoken")
-const JWT_ADMIN_SECRECT="adminloveme"
+const{JWT_ADMIN_SECRECT}=require("../config");
+const { adminMiddleware } = require("../middleware/admin");
 
 adminRouter.post("/signup",async (req,res)=>{
   const requiredBody=z.object({
@@ -114,9 +115,20 @@ adminRouter.post("/signin",async (req,res)=>{
   
 })
   
-adminRouter.get("/course",(req,res)=>{
+adminRouter.post("/course",adminMiddleware,async(req,res)=>{
+  const adminId= req.adminId
+  const {title,description,imageUrl,price}=req.body
+
+  const course =await adminModel.create({
+    title,
+    description,
+    imageUrl,
+    price,
+    creatorId:adminId
+  })
   res.json({
-    message:"endpoint for signup"
+    message:"Course created",
+    courseId:course._id
   })
   
 })

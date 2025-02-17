@@ -5,7 +5,7 @@ const{z}=require("zod")
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt =require("jsonwebtoken")
-const JWT_USER_SECRECT="userloveme"
+const{JWT_USER_SECRECT}=require("../config")
 
 
 userRouter.post("/signup",async (req,res)=>{
